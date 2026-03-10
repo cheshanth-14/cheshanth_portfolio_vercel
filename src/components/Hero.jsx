@@ -108,7 +108,8 @@ export default function Hero() {
                             View My Work
                         </a>
                         <a
-                            href="#"
+                            href="/Jagannithy_Cheshanth_CV.pdf"
+                            download="Jagannithy_Cheshanth_CV.pdf"
                             className="w-full sm:w-auto px-8 py-3 border-2 border-accentViolet text-textPrimary font-bold rounded-lg hover:bg-accentViolet/10 hover:shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2"
                         >
                             <FiDownload /> Download CV
