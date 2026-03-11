@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiGithub, FiInstagram, FiLinkedin, FiDownload, FiChevronDown } from 'react-icons/fi';
+import Hero3DBackground from './Hero3DBackground';
 
 const roles = [
     "Computer Science Undergraduate",
@@ -22,6 +23,9 @@ export default function Hero() {
 
     return (
         <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+            {/* 3D Background */}
+            <Hero3DBackground />
+
             {/* Animated Background Orbs */}
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accentTeal/20 rounded-full blur-[120px] animate-spin-slow" />
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accentViolet/20 rounded-full blur-[120px] animate-spin-slow shadow-[0_0_50px_rgba(124,58,237,0.5)]" style={{ animationDirection: 'reverse', animationDuration: '12s' }} />
