@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { SkillsBackground } from './Backgrounds';
 
 const techSkills = [
     { name: 'React', level: 70 },
@@ -24,7 +25,8 @@ const tools = ["VS Code", "Git", "GitHub", "Figma", "Android Studio", "Postman"]
 
 export default function Skills() {
     return (
-        <section id="skills" className="py-24 relative z-10">
+        <section id="skills" className="py-24 relative z-10 overflow-hidden">
+            <SkillsBackground />
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-16">
 
                 <motion.div
@@ -40,14 +42,16 @@ export default function Skills() {
                     <div className="w-32 h-1 bg-accentAmber mt-4 mx-auto lg:mx-0 rounded-full drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
                 </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                     {/* Technical Skills */}
                     <div className="space-y-6">
-                        <h3 className="text-2xl font-heading font-bold text-textPrimary mb-8 flex items-center gap-3">
-                            <span className="w-2 h-8 bg-accentTeal rounded-full shadow-[0_0_10px_rgba(0,245,212,0.5)]"></span>
-                            Technical Arsenal
-                        </h3>
+                        <div className="flex flex-col sm:flex-row items-center gap-8 mb-8">
+                            <h3 className="text-2xl font-heading font-bold text-textPrimary flex items-center gap-3">
+                                <span className="w-2 h-8 bg-accentTeal rounded-full shadow-[0_0_10px_rgba(0,245,212,0.5)]"></span>
+                                Technical Arsenal
+                            </h3>
+                        </div>
 
                         <div className="space-y-4">
                             {techSkills.map((skill, index) => (

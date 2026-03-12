@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin, FiGithub, FiInstagram, FiLinkedin } from 'react-icons/fi';
+import { ContactBackground } from './Backgrounds';
 
 const contactInfo = [
     {
@@ -28,10 +29,7 @@ const contactInfo = [
 export default function Contact() {
     return (
         <section id="contact" className="py-24 relative overflow-hidden z-10">
-
-            {/* Animated Gradient Mesh Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-bgPrimary via-[#0t1a2f] to-[#12052c] -z-20 opacity-80" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-gradient-to-tr from-accentTeal/20 via-accentViolet/20 to-accentAmber/20 blur-[150px] -z-10 animate-pulse" style={{ animationDuration: '6s' }} />
+            <ContactBackground />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-16 lg:px-8 text-center sm:text-left">
 

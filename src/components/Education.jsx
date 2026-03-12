@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import TiltCard from './TiltCard';
+import { EducationBackground } from './Backgrounds';
 
 const educationData = [
     {
@@ -23,7 +25,8 @@ const educationData = [
 
 export default function Education() {
     return (
-        <section id="education" className="py-24 relative z-10">
+        <section id="education" className="py-24 relative z-10 overflow-hidden">
+            <EducationBackground />
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-16">
 
                 <motion.div
@@ -63,9 +66,8 @@ export default function Education() {
                                 </div>
 
                                 {/* Card container */}
-                                <div className={`w-full lg:w-[45%] ${isEven ? 'lg:mr-auto lg:pr-12' : 'lg:ml-auto lg:pl-12'}`}>
-                                    <motion.div
-                                        whileHover={{ scale: 1.02 }}
+                                <div className={`w-full lg:w-[45%] ${isEven ? 'lg:mr-auto lg:pr-12' : 'lg:ml-auto lg:pl-12'}`} style={{ perspective: "1000px" }}>
+                                    <TiltCard
                                         className={`glass-card p-6 lg:p-8 rounded-2xl relative overflow-hidden group hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] border-l-4 lg:border-l-0 ${!isEven ? 'lg:border-l-4' : 'lg:border-r-4'}`}
                                         style={{
                                             borderColor: `rgba(255,255,255,0.05)`,
@@ -75,19 +77,28 @@ export default function Education() {
                                         {/* Hover Glow Background */}
                                         <div className={`absolute inset-0 bg-${item.color}/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl -z-10`} />
 
-                                        <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-${item.color}/10 text-${item.color} border border-${item.color}/30 mb-4 inline-flex shadow-[0_0_10px_rgba(255,255,255,0.1)]`}>
+                                        <span
+                                            className={`inline-block px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-${item.color}/10 text-${item.color} border border-${item.color}/30 mb-4 inline-flex shadow-[0_0_10px_rgba(255,255,255,0.1)]`}
+                                            style={{ transform: "translateZ(30px)" }}
+                                        >
                                             {item.year}
                                         </span>
 
-                                        <h3 className="text-2xl font-bold font-heading text-textPrimary tracking-tight mb-2">
+                                        <h3
+                                            className="text-2xl font-bold font-heading text-textPrimary tracking-tight mb-2"
+                                            style={{ transform: "translateZ(50px)" }}
+                                        >
                                             {item.degree}
                                         </h3>
 
-                                        <p className="text-lg text-textMuted font-medium font-sans flex items-center gap-2">
+                                        <p
+                                            className="text-lg text-textMuted font-medium font-sans flex items-center gap-2"
+                                            style={{ transform: "translateZ(20px)" }}
+                                        >
                                             <span className={`w-1.5 h-1.5 rounded-full bg-${item.color}`}></span>
                                             {item.institution}
                                         </p>
-                                    </motion.div>
+                                    </TiltCard>
                                 </div>
 
                             </motion.div>

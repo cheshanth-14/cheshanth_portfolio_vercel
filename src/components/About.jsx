@@ -1,11 +1,13 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
+import TiltCard from './TiltCard';
+import { AboutBackground } from './Backgrounds';
 
 const stats = [
     { label: 'Projects Built', value: 4, suffix: '+' },
     { label: 'Technologies Mastered', value: 10, suffix: '+' },
     { label: 'Languages Spoken', value: 3, suffix: '' },
-    { label: 'Accredited Umpire 😄', value: 1, suffix: '' },
+    { label: 'Accredited Umpire of SLBA', value: 1, suffix: '' },
 ];
 
 function AnimatedCounter({ value, suffix }) {
@@ -39,7 +41,8 @@ function AnimatedCounter({ value, suffix }) {
 
 export default function About() {
     return (
-        <section id="about" className="py-24 relative z-10">
+        <section id="about" className="py-24 relative z-10 overflow-hidden">
+            <AboutBackground />
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-16">
 
                 <motion.div
@@ -72,16 +75,23 @@ export default function About() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.15, type: "spring", stiffness: 100 }}
-                                whileHover={{ y: -5, scale: 1.05 }}
-                                className="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center space-y-2 group hover:border-accentTeal/50 transition-all duration-300 relative overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
+                                style={{ perspective: "1000px" }}
                             >
-                                <div className="absolute inset-0 bg-accentTeal/5 blur-xl group-hover:bg-accentTeal/20 transition-all duration-500 rounded-2xl -z-10" />
-                                <h3 className="text-4xl font-black text-accentTeal font-mono drop-shadow-[0_0_10px_rgba(0,245,212,0.3)] group-hover:drop-shadow-[0_0_15px_rgba(0,245,212,0.8)] transition-all">
-                                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                                </h3>
-                                <p className="text-sm text-textMuted font-medium tracking-wide group-hover:text-white transition-colors">
-                                    {stat.label}
-                                </p>
+                                <TiltCard className="glass-card p-6 h-full rounded-2xl flex flex-col items-center justify-center text-center space-y-2 group hover:border-accentTeal/50 transition-all duration-300 relative overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+                                    <div className="absolute inset-0 bg-accentTeal/5 blur-xl group-hover:bg-accentTeal/20 transition-all duration-500 rounded-2xl -z-10" />
+                                    <h3
+                                        className="text-4xl font-black text-accentTeal font-mono drop-shadow-[0_0_10px_rgba(0,245,212,0.3)] group-hover:drop-shadow-[0_0_15px_rgba(0,245,212,0.8)] transition-all"
+                                        style={{ transform: "translateZ(30px)" }}
+                                    >
+                                        <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                                    </h3>
+                                    <p
+                                        className="text-sm text-textMuted font-medium tracking-wide group-hover:text-white transition-colors"
+                                        style={{ transform: "translateZ(20px)" }}
+                                    >
+                                        {stat.label}
+                                    </p>
+                                </TiltCard>
                             </motion.div>
                         ))}
                     </motion.div>

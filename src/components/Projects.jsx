@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
+import TiltCard from './TiltCard';
+import { ProjectsBackground } from './Backgrounds';
 
 const projects = [
     {
@@ -38,7 +40,8 @@ const projects = [
 
 export default function Projects() {
     return (
-        <section id="projects" className="py-24 relative z-10">
+        <section id="projects" className="py-24 relative z-10 overflow-hidden">
+            <ProjectsBackground />
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-16">
 
                 <motion.div
@@ -62,64 +65,64 @@ export default function Projects() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            whileHover={{ y: -10, rotateX: 2, rotateY: -2 }}
-                            className="glass-card relative flex flex-col h-full rounded-2xl overflow-hidden group hover:shadow-[0_20px_40px_-15px_rgba(0,245,212,0.3)] border-t border-t-transparent hover:border-t-accentTeal transition-all duration-300"
-                            style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
+                            className="h-full"
                         >
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accentTeal to-accentViolet opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="glass-card relative flex flex-col h-full min-h-[400px] rounded-3xl overflow-hidden group border border-white/5 hover:border-accentTeal/30 hover:shadow-[0_20px_50px_-20px_rgba(0,245,212,0.2)] transition-all duration-500 bg-white/[0.02]">
+                                {/* Animated Gradient Overlay on Hover */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-accentTeal/5 via-transparent to-accentViolet/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                
+                                <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-accentTeal via-accentViolet to-accentAmber transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-                            <div className="p-8 flex flex-col flex-1 z-10">
-                                <div className="flex justify-between items-start mb-6">
-                                    <span className="text-4xl font-mono font-black text-white/10 group-hover:text-accentTeal/20 transition-colors drop-shadow-[0_0_10px_rgba(255,255,255,0.05)]">
-                                        {project.id}
-                                    </span>
-                                </div>
-
-                                <h3 className="text-xl font-heading font-bold text-textPrimary mb-2 group-hover:text-accentTeal transition-colors">
-                                    {project.title}
-                                </h3>
-
-                                <p className="text-accentViolet text-sm font-mono mb-4">
-                                    {project.date}
-                                </p>
-
-                                <p className="text-textMuted text-sm leading-relaxed mb-6 flex-1">
-                                    {project.desc}
-                                </p>
-
-                                <div className="flex flex-wrap gap-2 mt-auto mb-8">
-                                    {project.tags.map((tag) => (
-                                        <span key={tag} className="px-3 py-1 bg-bgPrimary/50 border border-white/5 rounded-full text-xs font-mono text-textPrimary group-hover:border-accentTeal/30 transition-colors shadow-inner">
-                                            {tag}
+                                <div className="p-8 flex flex-col flex-1 z-10 relative">
+                                    <div className="flex justify-between items-center mb-8">
+                                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accentTeal/10 to-accentViolet/10 flex items-center justify-center border border-white/10 group-hover:border-accentTeal/40 transition-colors duration-500">
+                                            <span className="text-xl font-mono font-bold text-accentTeal">
+                                                {project.id}
+                                            </span>
+                                        </div>
+                                        <span className="text-xs font-mono text-textMuted uppercase tracking-widest bg-white/5 py-1 px-3 rounded-full border border-white/5">
+                                            {project.date}
                                         </span>
-                                    ))}
-                                </div>
+                                    </div>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                                    {project.demoLink && (
-                                        <motion.a
-                                            href={project.demoLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            className="py-2.5 bg-gradient-to-r from-accentTeal to-accentViolet text-bgPrimary font-bold rounded-xl flex items-center justify-center gap-2 shadow-[0_5px_15px_rgba(0,245,212,0.3)] text-sm"
-                                        >
-                                            Demo <FiExternalLink />
-                                        </motion.a>
-                                    )}
-                                    {project.githubLink && (
-                                        <motion.a
-                                            href={project.githubLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            className="py-2.5 border border-white/10 hover:border-accentTeal/50 text-textPrimary hover:text-accentTeal font-bold rounded-xl flex items-center justify-center gap-2 transition-all bg-white/5 text-sm"
-                                        >
-                                            Code <FiGithub />
-                                        </motion.a>
-                                    )}
+                                    <h3 className="text-2xl font-heading font-black text-textPrimary mb-3 leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accentTeal group-hover:to-accentViolet transition-all duration-300">
+                                        {project.title}
+                                    </h3>
+
+                                    <p className="text-textMuted text-base leading-relaxed mb-8 line-clamp-4 group-hover:text-textPrimary transition-colors duration-300">
+                                        {project.desc}
+                                    </p>
+
+                                    <div className="flex flex-wrap gap-2 mt-auto mb-10">
+                                        {project.tags.map((tag) => (
+                                            <span key={tag} className="px-3 py-1.5 bg-bgPrimary/40 border border-white/5 rounded-xl text-[11px] font-mono text-textMuted group-hover:text-accentTeal group-hover:border-accentTeal/20 transition-all duration-300 shadow-sm">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-4">
+                                        {project.demoLink && (
+                                            <a
+                                                href={project.demoLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="py-3 px-4 bg-accentTeal text-bgPrimary font-bold rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_8px_20px_rgba(0,245,212,0.4)] hover:-translate-y-1 transition-all duration-300 text-sm overflow-hidden whitespace-nowrap"
+                                            >
+                                                <span>Live Demo</span> <FiExternalLink className="shrink-0" />
+                                            </a>
+                                        )}
+                                        {project.githubLink && (
+                                            <a
+                                                href={project.githubLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="py-3 px-4 bg-white/5 border border-white/10 hover:border-accentViolet/50 text-textPrimary hover:text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:-translate-y-1 transition-all duration-300 text-sm overflow-hidden whitespace-nowrap"
+                                            >
+                                                <span>Source</span> <FiGithub className="shrink-0" />
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>

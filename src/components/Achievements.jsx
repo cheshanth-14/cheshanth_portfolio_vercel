@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import TiltCard from './TiltCard';
+import { AchievementsBackground } from './Backgrounds';
 
 const achievements = [
     {
@@ -54,7 +56,8 @@ const achievements = [
 
 export default function Achievements() {
     return (
-        <section id="achievements" className="py-24 relative z-10">
+        <section id="achievements" className="py-24 relative z-10 overflow-hidden">
+            <AchievementsBackground />
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-16">
 
                 <motion.div
@@ -79,27 +82,30 @@ export default function Achievements() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            whileHover={{ y: -5 }}
-                            className={`glass-card p-6 rounded-2xl flex flex-col group relative overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_var(--${item.glow})]`}
-                            style={{ '--hover-color': `var(--${item.glow})` }}
+                            style={{ perspective: "1000px" }}
                         >
-                            <div className="absolute inset-0 bg-white/0 group-hover:bg-[var(--hover-color)]/10 transition-colors duration-500 rounded-2xl -z-10" />
+                            <TiltCard
+                                className={`glass-card p-6 h-full rounded-2xl flex flex-col group relative overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_var(--${item.glow})]`}
+                                style={{ '--hover-color': `var(--${item.glow})` }}
+                            >
+                                <div className="absolute inset-0 bg-white/0 group-hover:bg-[var(--hover-color)]/10 transition-colors duration-500 rounded-2xl -z-10" />
 
-                            <div className="text-4xl mb-4 p-3 bg-bgPrimary/50 rounded-xl inline-flex w-fit shadow-inner group-hover:scale-110 transition-transform">
-                                {item.icon}
-                            </div>
+                                <div className="text-4xl mb-4 p-3 bg-bgPrimary/50 rounded-xl inline-flex w-fit shadow-inner group-hover:scale-110 transition-transform" style={{ transform: "translateZ(40px)" }}>
+                                    {item.icon}
+                                </div>
 
-                            <h3 className="text-lg font-heading font-bold text-textPrimary group-hover:text-[var(--hover-color)] transition-colors mb-1">
-                                {item.title}
-                            </h3>
+                                <h3 className="text-lg font-heading font-bold text-textPrimary group-hover:text-[var(--hover-color)] transition-colors mb-1" style={{ transform: "translateZ(60px)" }}>
+                                    {item.title}
+                                </h3>
 
-                            <span className="text-xs font-mono text-[var(--hover-color)] mb-3 bg-[var(--hover-color)]/10 px-2 py-0.5 rounded-full w-fit border border-[var(--hover-color)]/20 shadow-sm">
-                                {item.subtitle}
-                            </span>
+                                <span className="text-xs font-mono text-[var(--hover-color)] mb-3 bg-[var(--hover-color)]/10 px-2 py-0.5 rounded-full w-fit border border-[var(--hover-color)]/20 shadow-sm" style={{ transform: "translateZ(30px)" }}>
+                                    {item.subtitle}
+                                </span>
 
-                            <p className="text-sm text-textMuted mt-auto">
-                                {item.desc}
-                            </p>
+                                <p className="text-sm text-textMuted mt-auto" style={{ transform: "translateZ(20px)" }}>
+                                    {item.desc}
+                                </p>
+                            </TiltCard>
                         </motion.div>
                     ))}
                 </div>
